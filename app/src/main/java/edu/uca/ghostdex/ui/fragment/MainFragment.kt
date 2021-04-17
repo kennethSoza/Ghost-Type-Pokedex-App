@@ -55,7 +55,7 @@ constructor() : Fragment(R.layout.fragment_first){
                 when(it){
                     is DataState.Success -> {
                         displayProgressBar(false)
-                        adapterPkmn.setPlaces(it.places)
+                        adapterPkmn.setPlaces(it.pkmn)
                     }
                     is DataState.Error -> {
                         displayProgressBar(false)

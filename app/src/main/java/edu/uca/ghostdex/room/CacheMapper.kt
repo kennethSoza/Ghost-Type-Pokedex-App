@@ -9,6 +9,7 @@ class CacheMapper
 @Inject
 constructor():
     EntityMapper<PkmnCacheEntity, Pkmn>{
+
     override fun mapFromEntity(entity: PkmnCacheEntity): Pkmn {
         return Pkmn(
             id = entity.id,

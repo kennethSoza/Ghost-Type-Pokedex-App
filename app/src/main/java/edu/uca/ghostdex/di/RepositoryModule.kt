@@ -17,7 +17,7 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun providePlaceRepository(
+    fun providePkmnRepository(
         pkmnDao: PkmnDao,
         pkmnRetrofit: PkmnRetrofit,
         cacheMapper: CacheMapper,

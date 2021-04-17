@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias=".2" />
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/item_place"
+        tools:listitem="@layout/item_pokemon"
         android:id="@+id/recyclerViewPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

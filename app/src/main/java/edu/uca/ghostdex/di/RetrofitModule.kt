@@ -31,7 +31,7 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun providePlaceService(retrofit: Retrofit.Builder): PkmnRetrofit{
+    fun providePkmnService(retrofit: Retrofit.Builder): PkmnRetrofit{
         return retrofit.build().create(PkmnRetrofit::class.java)
     }
 }
