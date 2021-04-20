@@ -32,7 +32,7 @@ class AdapterPkmn () : RecyclerView.Adapter<AdapterPkmn.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model= items[position]
-        holder.pkdxnumber.text = model.pkdxnumber
+        holder.pkdxnumber.text = "#"+model.pkdxnumber
         holder.pkmnname.text = model.pkmnname
         holder.descripton.text = model.description
         Picasso.get()
