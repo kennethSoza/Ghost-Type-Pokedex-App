@@ -10,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
+import java.net.UnknownHostException
 
 class PkmnRepository constructor (
         private val pkmnDao : PkmnDao,
@@ -29,6 +30,18 @@ class PkmnRepository constructor (
                         val cachePkmn = pkmnDao.get()
                         emit(DataState.Success(cacheMapper.mapFromEntityList(cachePkmn)))
                 }catch (e: Exception){
+                        when(e){
+                                is UnknownHostException -> {
+                                        val cachePkmn = pkmnDao.get()
+                                        if (cachePkmn.isEmpty()) {
+                                                emit(DataState.Error(java.lang.Exception("The" +
+                                                        " table is empty,, please connect to" +
+                                                        " internet")))
+                                        }else{
+                                                emit(DataState.Success(cacheMapper.mapFromEntityList(cachePkmn)))
+                                        }
+                                }
+                        }
                         emit(DataState.Error(e))
                 }
         }
