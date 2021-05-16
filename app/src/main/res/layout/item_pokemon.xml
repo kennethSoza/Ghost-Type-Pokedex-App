@@ -7,6 +7,7 @@
     android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/pkmn_card"
     android:backgroundTint="@color/teal_200">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,10 +69,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pkmnname"
                 tools:text="Descripcion" />
-
         </RelativeLayout>
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

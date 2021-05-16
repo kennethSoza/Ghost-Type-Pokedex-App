@@ -40,10 +40,8 @@ class MainViewModel
                             .launchIn(viewModelScope)
                     }
                     Intent.None -> {
-
                     }
                 }
-
             }
         }
     }
