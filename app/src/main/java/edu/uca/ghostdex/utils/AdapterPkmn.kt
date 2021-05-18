@@ -1,5 +1,6 @@
 package edu.uca.ghostdex.utils
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,18 +14,33 @@ import edu.uca.ghostdex.R
 
 class AdapterPkmn () : RecyclerView.Adapter<AdapterPkmn.ViewHolder>(){
     lateinit var items: ArrayList<Pkmn>
+    private var clickListener : RecyclerViewClickListener?=null
 
-    fun setPlaces(items: List<Pkmn>){
+    fun setOnClickListener(clickListener: RecyclerViewClickListener){
+        this.clickListener = clickListener
+    }
+
+    fun setPkmns(items: List<Pkmn>){
         this.items = items as ArrayList<Pkmn>
         notifyDataSetChanged()
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) , View.OnClickListener{
         // Holds the TextView that will add each picture to
         val pkmnImage: ImageView = view.pkmn_image
         val pkdxnumber: TextView = view.pkdxnumber
         val pkmnname: TextView = view.pkmnname
         val descripton: TextView = view.description
+
+        init{
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            var model = items.get(adapterPosition)
+            clickListener?.onClickPkmn(adapterPosition, model)
+
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

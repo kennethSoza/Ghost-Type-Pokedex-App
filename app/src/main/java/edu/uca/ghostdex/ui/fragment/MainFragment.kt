@@ -1,6 +1,7 @@
 package edu.uca.ghostdex.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,8 +16,10 @@ import edu.uca.ghostdex.ui.MainViewModel
 import javax.inject.Inject
 import edu.uca.ghostdex.R
 import edu.uca.ghostdex.intent.Intent
+import edu.uca.ghostdex.model.Pkmn
 import edu.uca.ghostdex.utils.AdapterPkmn
 import edu.uca.ghostdex.utils.DataState
+import edu.uca.ghostdex.utils.RecyclerViewClickListener
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -40,13 +43,23 @@ constructor() : Fragment(R.layout.fragment_first){
             )
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true
-        recyclerViewPlaces.layoutManager = layoutManager
-        recyclerViewPlaces.adapter = adapterPkmn
+        recyclerViewPkmn.layoutManager = layoutManager
+        recyclerViewPkmn.adapter = adapterPkmn
 
         subscribeObservers()
         lifecycleScope.launch {
             viewModel.userIntent.send(Intent.GetPkmnEvent)
         }
+
+        adapterPkmn.setOnClickListener(object: RecyclerViewClickListener{
+            override fun onClickPkmn(position: Int, pkmn: Pkmn) {
+                Log.d("Probando, nombre:",pkmn.pkmnname)
+                val dp = DetailsPokemon()
+                dp.setPkmnDetail(pkmn)
+                activity?.let { dp.show(it.supportFragmentManager, "DialogFragmentPkmnDetails") }
+            }
+
+        })
     }
 
     private fun subscribeObservers(){
@@ -55,7 +68,7 @@ constructor() : Fragment(R.layout.fragment_first){
                 when(it){
                     is DataState.Success -> {
                         displayProgressBar(false)
-                        adapterPkmn.setPlaces(it.pkmn)
+                        adapterPkmn.setPkmns(it.pkmn)
                     }
                     is DataState.Error -> {
                         displayProgressBar(false)

@@ -20,7 +20,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/item_pokemon"
-        android:id="@+id/recyclerViewPlaces"
+        android:id="@+id/recyclerViewPkmn"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
