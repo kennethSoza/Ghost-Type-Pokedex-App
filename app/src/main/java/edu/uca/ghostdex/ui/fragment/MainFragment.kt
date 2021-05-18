@@ -51,6 +51,10 @@ constructor() : Fragment(R.layout.fragment_first){
             viewModel.userIntent.send(Intent.GetPkmnEvent)
         }
 
+        /**Con el adapter, se manda a llamar el Listener que creamos
+         * para el RecyclerView, ya luego se declara un objeto de tipo
+         * DetailsPokemon, para luego mandar los datos del pokémon seleccionado
+         * al dialog fragment, al mismo tiempo se manda a mostrar el fragment*/
         adapterPkmn.setOnClickListener(object: RecyclerViewClickListener{
             override fun onClickPkmn(position: Int, pkmn: Pkmn) {
                 Log.d("Probando, nombre:",pkmn.pkmnname)

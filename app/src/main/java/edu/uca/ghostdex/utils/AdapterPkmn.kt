@@ -34,6 +34,8 @@ class AdapterPkmn () : RecyclerView.Adapter<AdapterPkmn.ViewHolder>(){
             itemView.setOnClickListener(this)
         }
 
+        /**Método para cuando se hace click o tap sobre uno
+         * de los pokémon*/
         override fun onClick(v: View?) {
             var model = items.get(adapterPosition)
             clickListener?.onClickPkmn(adapterPosition, model)

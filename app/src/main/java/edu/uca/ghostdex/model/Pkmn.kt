@@ -1,5 +1,5 @@
 package edu.uca.ghostdex.model
-
+//Modelo de clase
 data class Pkmn(
         var id: Int,
         var pkdxnumber: String,

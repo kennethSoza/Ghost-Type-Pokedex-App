@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.item_pokemon.view.*
 /**Fragment que extiende de DialogFragment, este muestra los detalles
  * del pokemon seleccionado en la lista del recyclerview*/
 class DetailsPokemon : DialogFragment() {
+    //Variable global en la que se almacena el pokémon seleccionado
     var pkmnSelected: Pkmn? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +32,11 @@ class DetailsPokemon : DialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         var rootView: View = inflater.inflate(R.layout.fragment_details_pokemon, container, false)
-
-
         return rootView
     }
 
+    /**Una vez inflada la vista, se manda a colocar los datos en text view y la imagen
+     * en el image view, haciendo uso de la variable global*/
     override fun onViewCreated(view: View, savedInstanceState:Bundle?){
         super.onViewCreated(view, savedInstanceState)
         val pkdxnumberFragment: TextView = view.pkdxnumberFragment
@@ -54,6 +55,10 @@ class DetailsPokemon : DialogFragment() {
 
 
     fun setPkmnDetail(pkmn: Pkmn){
+        /**
+         * Aquí se toman los datos del pokémon seleccionado por el usuario
+         * para ser mostrado en el dialog fragment, para ello se almacena
+         * el objeto seleccionado en la variable global pkmnSelected*/
         pkmnSelected = pkmn
         pkmnSelected?.pkmnname?.let { Log.d("Probando setPkmnDetail", it) }
     }
