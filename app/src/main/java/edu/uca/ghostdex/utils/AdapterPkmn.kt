@@ -28,9 +28,7 @@ class AdapterPkmn () : RecyclerView.Adapter<AdapterPkmn.ViewHolder>(){
     inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) , View.OnClickListener{
         // Holds the TextView that will add each picture to
         val pkmnImage: ImageView = view.pkmn_image
-        val pkdxnumber: TextView = view.pkdxnumber
-        val pkmnname: TextView = view.pkmnname
-        val descripton: TextView = view.description
+
 
         init{
             itemView.setOnClickListener(this)
@@ -48,9 +46,6 @@ class AdapterPkmn () : RecyclerView.Adapter<AdapterPkmn.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model= items[position]
-        holder.pkdxnumber.text = "#"+model.pkdxnumber
-        holder.pkmnname.text = model.pkmnname
-        holder.descripton.text = model.description
         Picasso.get()
             .load(model.url)
             .into(holder.pkmnImage)
