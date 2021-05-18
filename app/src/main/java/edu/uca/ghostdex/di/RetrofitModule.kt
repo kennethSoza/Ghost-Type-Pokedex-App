@@ -25,6 +25,8 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(gson: Gson) : Retrofit.Builder{
         return Retrofit.Builder()
+                /**Consulta a la api que creamos, para más detalles
+                 * revisar el README.md*/
             .baseUrl("https://ghost-pokemon.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
